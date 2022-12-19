@@ -2,13 +2,25 @@ import 'package:thaonhushop_flutter/app/core/utils/export.dart';
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: Colors.pink,
-  backgroundColor: Colors.pink,
+  primaryColor: Colors.white,
+  backgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
-    color: Colors.pink,
+    color: Colors.white,
     elevation: 0,
     iconTheme: IconThemeData(color: Colors.black),
     titleTextStyle: TextStyle(color: Colors.black),
+  ),
+  textTheme: TextTheme(
+    bodySmall: TextStyle(
+      fontSize: 13.sp,
+      color: Colors.black,
+      fontFamily: GoogleFonts.montserrat().fontFamily,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14.sp,
+      color: Colors.black,
+      fontFamily: GoogleFonts.montserrat().fontFamily,
+    ),
   ),
 );
 
