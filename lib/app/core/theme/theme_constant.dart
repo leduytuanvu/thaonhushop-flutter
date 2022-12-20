@@ -12,7 +12,7 @@ ThemeData lightTheme = ThemeData(
   ),
   textTheme: TextTheme(
     bodySmall: TextStyle(
-      fontSize: 13.sp,
+      fontSize: 10.sp,
       color: Colors.black,
       fontFamily: GoogleFonts.montserrat().fontFamily,
     ),

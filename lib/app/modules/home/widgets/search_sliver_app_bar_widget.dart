@@ -1,7 +1,7 @@
 import '../../../core/utils/export.dart';
 
-class SearchHomeWidget extends StatelessWidget {
-  const SearchHomeWidget({super.key});
+class SearchSliverAppBarWidget extends StatelessWidget {
+  const SearchSliverAppBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

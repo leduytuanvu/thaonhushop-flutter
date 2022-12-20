@@ -1,124 +1,247 @@
 import 'package:thaonhushop_flutter/app/modules/home/controller/home_controller.dart';
+import 'package:thaonhushop_flutter/app/modules/home/widgets/leading_sliver_app_bar_widget.dart';
+import 'package:thaonhushop_flutter/app/modules/home/widgets/list_action_sliver_app_bar_widget.dart';
+import 'package:thaonhushop_flutter/app/modules/home/widgets/list_category_widget.dart';
 import '../../../core/utils/export.dart';
-import '../widgets/carousel_slider_widget.dart';
-import '../widgets/indicator_slider_widget.dart';
-import '../widgets/search_home_widget.dart';
+import '../widgets/flexible_space_bar_widget.dart';
+import '../widgets/title_sliver_app_bar_widget.dart';
 
 class HomeScreen extends GetWidget<HomeController> {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var top = 0.0;
     return RefreshIndicator(
       displacement: 10.h,
       onRefresh: () async {},
       child: CustomScrollView(
         slivers: [
           SliverAppBar(
-            // toolbarHeight: 50,
+            backgroundColor: Colors.grey.shade400,
             pinned: true,
             snap: false,
             floating: false,
             centerTitle: true,
-            expandedHeight: 242.h,
-            flexibleSpace: LayoutBuilder(
-              builder: (ctx, cons) {
-                top = cons.biggest.height;
-                return FlexibleSpaceBar(
-                  centerTitle: true,
-                  titlePadding:
-                      const EdgeInsets.only(bottom: 5, right: 5, left: 5),
-                  title: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 100),
-                    opacity: top <= 300 ? 1.0 : 0.0,
-                    child: const SearchHomeWidget(),
-                  ),
-                  expandedTitleScale: 1,
-                  background: Stack(
+            expandedHeight: 240.h,
+            leading: const LeadingSliverAppBarWidget(),
+            actions: ListActionSliverAppBarWidget().listAction(),
+            titleSpacing: 2.w,
+            title: const TitleSliverAppBarWidget(),
+            flexibleSpace: const FlexibleSpaceBarWidget(),
+          ),
+
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // SizedBox(height: 10.h),
+                Container(
+                  color: Colors.orange,
+                  child: Row(
                     children: const [
-                      CarouselSliderWidget(),
-                      IndicatorSliderWidget(),
+                      Text("SALE"),
                     ],
                   ),
-                );
-              },
+                ),
+                Container(
+                  color: Colors.orange,
+                  height: 240.0.h,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          color: Colors.green,
+                          width: 180.0.h,
+                          child: Column(
+                            children: [
+                              Image.network(
+                                "https://picsum.photos/250?image=9",
+                              ),
+                              Text("Item $index"),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 10.h)
+              ],
             ),
           ),
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 15.h),
-                const Text("Brand"),
-                SizedBox(height: 15.h),
-                SizedBox(
-                  height: 100,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      for (int i = 0; i < 10; i++) ...{
-                        Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: i % 2 == 0 ? Colors.red : Colors.blue,
-                              ),
-                              width: 70,
-                              height: 70,
-                            ),
-                            SizedBox(height: 2.h),
-                            Text(
-                              "Category 1",
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(width: 10),
-                      }
+                // SizedBox(height: 10.h),
+                Container(
+                  color: Colors.orange,
+                  child: Row(
+                    children: const [
+                      Text("HOT"),
                     ],
                   ),
                 ),
-                SizedBox(height: 10.h),
-                const Text("Category"),
-                SizedBox(height: 15.h),
-                SizedBox(
-                  height: 100,
-                  child: ListView(
+                Container(
+                  color: Colors.orange,
+                  height: 140.0.h,
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      for (int i = 0; i < 10; i++) ...{
-                        Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: i % 2 == 0 ? Colors.red : Colors.blue,
-                              ),
-                              width: 70,
-                              height: 70,
-                            ),
-                            SizedBox(height: 2.h),
-                            Text(
-                              "Category 1",
-                              style: Theme.of(context).textTheme.bodySmall,
-                            )
-                          ],
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          color: Colors.green,
+                          width: 220.0.h,
+                          child: Image.network(
+                            "https://picsum.photos/250?image=9",
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        const SizedBox(width: 10),
-                      }
-                    ],
+                      );
+                    },
                   ),
                 ),
-                SizedBox(height: 15.h),
+                SizedBox(height: 10.h)
               ],
             ),
           ),
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // SizedBox(height: 10.h),
+                Container(
+                  color: Colors.orange,
+                  child: Row(
+                    children: const [
+                      Text("Brand"),
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Colors.orange,
+                  height: 100.0.h,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          color: Colors.green,
+                          width: 100.0.h,
+                          child: Image.network(
+                            "https://picsum.photos/250?image=9",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 10.h)
+              ],
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: ListCategoryWidget(),
+          ),
+          // SliverFixedExtentList(
+          //   itemExtent: 100.0,
+          //   delegate: SliverChildBuilderDelegate(
+          //     (BuildContext context, int index) {
+          //       return Container(
+          //         color: index.isEven ? Colors.amber[200] : Colors.blue[200],
+          //       );
+          //     },
+          //     childCount: 10,
+          //   ),
+          // ),
+
+          // SliverFillRemaining(
+          //   hasScrollBody: false,
+          //   child: Container(
+          //     color: Colors.orange[300],
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(50.0),
+          //       child: ListView.builder(
+          //         shrinkWrap: true,
+          //         itemCount: 100,
+          //         itemBuilder: (context, index) {
+          //           return Text(
+          //             "Item $index",
+          //             style: const TextStyle(fontSize: 20),
+          //           );
+          //         },
+          //       ),
+          //     ),
+          //   ),
+          // ),
+
+          // SliverFillViewport(
+
+          //   delegate: SliverChildListDelegate(
+
+          //     [
+
+          //     Container(
+          //       height: 200,
+          //       padding: const EdgeInsets.all(8),
+          //       color: Colors.green[300],
+          //       child: const Text('Sound of screams but the'),
+          //     ),
+          //     Container(
+          //       height: 200,
+          //       padding: const EdgeInsets.all(8),
+          //       color: Colors.green[400],
+          //       child: const Text('Who scream'),
+          //     ),
+          //     Container(
+          //       height: 200,
+          //       padding: const EdgeInsets.all(8),
+          //       color: Colors.green[500],
+          //       child: const Text('Revolution is coming...'),
+          //     ),
+          //     Container(
+          //       height: 200,
+          //       padding: const EdgeInsets.all(8),
+          //       color: Colors.green[600],
+          //       child: const Text('Revolution, they...'),
+          //     ),
+          //   ]),
+          //   viewportFraction: 1.0,
+          // ),
+          // SliverList(
+
+          //   delegate: SliverChildBuilderDelegate(
+
+          //     (BuildContext context, int index) {
+          //       return Padding(
+          //         padding: const EdgeInsets.all(8.0),
+          //         child: Container(
+          //           color: index % 2 == 0 ? Colors.green : Colors.greenAccent,
+          //           height: 80,
+          //           alignment: Alignment.center,
+          //           child: Text(
+          //             "Item $index",
+          //             style: const TextStyle(fontSize: 30),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //     // 40 list items
+          //     childCount: 40,
+          //   ),
+          // ),
+
           SliverPadding(
             padding: const EdgeInsets.all(0),
             sliver: SliverGrid.count(
-              childAspectRatio: 0.8,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
               crossAxisCount: 2,
