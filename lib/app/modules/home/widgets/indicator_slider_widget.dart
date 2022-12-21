@@ -12,14 +12,14 @@ class IndicatorSliderWidget extends GetWidget<HomeController> {
         return GestureDetector(
           onTap: () => controller.carouselController.animateToPage(entry.key),
           child: Container(
-            width: 4.0,
-            height: 4.0,
-            margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 3.0),
+            width: 5.0.w,
+            height: 5.0.w,
+            margin: EdgeInsets.symmetric(vertical: 12.w, horizontal: 3.0.w),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: (Theme.of(context).brightness == Brightness.dark
+              color: Theme.of(context).brightness == Brightness.dark
                   ? Colors.white
-                  : Colors.white),
+                  : Colors.grey,
             ),
           ),
         );

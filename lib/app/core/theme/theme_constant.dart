@@ -17,7 +17,12 @@ ThemeData lightTheme = ThemeData(
       fontFamily: GoogleFonts.montserrat().fontFamily,
     ),
     bodyMedium: TextStyle(
-      fontSize: 14.sp,
+      fontSize: 12.sp,
+      color: Colors.black,
+      fontFamily: GoogleFonts.montserrat().fontFamily,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 16.sp,
       color: Colors.black,
       fontFamily: GoogleFonts.montserrat().fontFamily,
     ),

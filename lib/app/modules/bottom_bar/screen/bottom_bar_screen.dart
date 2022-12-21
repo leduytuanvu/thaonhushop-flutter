@@ -5,6 +5,8 @@ import 'package:thaonhushop_flutter/app/core/config/app_icon.dart';
 import 'package:thaonhushop_flutter/app/modules/bottom_bar/controller/bottom_bar_controller.dart';
 import 'package:thaonhushop_flutter/app/modules/home/screen/home_screen.dart';
 import '../../../core/utils/export.dart';
+import '../../login/screen/login_screen.dart';
+import '../../register/screen/register_screen.dart';
 import '../widgets/icon_bottom_widget.dart';
 
 class BottomBarScreen extends GetWidget<BottomBarController> {
@@ -14,8 +16,8 @@ class BottomBarScreen extends GetWidget<BottomBarController> {
   Widget build(BuildContext context) {
     var listScreen = [
       const HomeScreen(),
-      const HomeScreen(),
-      const HomeScreen(),
+      const LoginScreen(),
+      const RegisterScreen(),
       const HomeScreen(),
       const HomeScreen(),
     ];

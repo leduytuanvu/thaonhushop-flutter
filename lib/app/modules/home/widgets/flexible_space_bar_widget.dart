@@ -1,6 +1,8 @@
+import 'package:thaonhushop_flutter/app/modules/home/widgets/indicator_slider_widget.dart';
+import 'package:thaonhushop_flutter/app/modules/home/widgets/title_sliver_app_bar_widget.dart';
+
 import '../../../core/utils/export.dart';
 import 'carousel_slider_widget.dart';
-import 'indicator_slider_widget.dart';
 
 class FlexibleSpaceBarWidget extends StatelessWidget {
   const FlexibleSpaceBarWidget({super.key});
@@ -10,58 +12,23 @@ class FlexibleSpaceBarWidget extends StatelessWidget {
     return FlexibleSpaceBar(
       // scroll vertical
       collapseMode: CollapseMode.pin,
+      expandedTitleScale: 1,
+      titlePadding: EdgeInsets.zero,
+      title: const TitleSliverAppBarWidget(),
       background: Stack(
         children: [
-          Positioned(
+          const Positioned(
             top: 0,
             left: 0,
             right: 0,
-            child: Image.network(
-              "https://media.istockphoto.com/id/1063375198/vector/abstract-gray-gradient-color-background.jpg?s=612x612&w=0&k=20&c=fvqiWFmN4Jw_uUAnbJcOWN4ULigrS6ZGCHs72eEY88Q=",
-              fit: BoxFit.cover,
-              height: 240.h,
-            ),
+            child: CarouselSliderWidget(),
           ),
           Positioned(
-            top: 0,
+            bottom: 45.h,
             left: 0,
             right: 0,
-            child: Container(
-              height: 240.h,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.3),
-                    Colors.black.withOpacity(0.5),
-                    Colors.black.withOpacity(0.7),
-                    Colors.black.withOpacity(0.9),
-                  ],
-                ),
-              ),
-            ),
+            child: const IndicatorSliderWidget(),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: SizedBox(
-              height: 180.h,
-              child: Stack(
-                children: const [
-                  Positioned.fill(child: CarouselSliderWidget()),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                    child: IndicatorSliderWidget(),
-                  ),
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );

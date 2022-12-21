@@ -11,12 +11,10 @@ class HomeController extends GetxController {
   var current = 0.obs;
   CarouselController carouselController = CarouselController();
   var imgList = [
-    'https://img.freepik.com/free-psd/horizontal-banner-online-fashion-sale_23-2148585404.jpg?w=2000',
-    'https://img.freepik.com/free-psd/horizontal-banner-template-online-fashion-sale_23-2148585405.jpg?w=2000',
-    'https://img.freepik.com/free-psd/fashion-store-template-banner_23-2148707242.jpg?w=2000',
-    'https://img.freepik.com/free-psd/fashion-store-banner-template_23-2148707241.jpg?w=2000',
-    'https://img.freepik.com/free-psd/fashion-model-banner-template_23-2148858371.jpg?w=2000',
-    'https://img.freepik.com/free-vector/spring-sale-banner-with-photo-hand-drawn-flowers_1188-295.jpg?w=2000'
+    'https://i.pinimg.com/originals/2a/81/e2/2a81e2453541de46f122b9a791530c98.jpg',
+    'https://i.pinimg.com/originals/1b/67/55/1b67558f6b8f256942a037f21a60c508.jpg',
+    'https://media.gq.com/photos/58ac8110fe394a37d8fa72d0/master/pass/GQ-Selects-March-Hero.jpg',
+    'https://www.thefashionisto.com/wp-content/uploads/2016/03/GQ-Selects-Mr-Porter-April-2016-River-Viiperi.jpg'
   ].obs;
 
   @override

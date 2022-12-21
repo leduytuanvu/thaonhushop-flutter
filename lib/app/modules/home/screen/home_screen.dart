@@ -1,10 +1,7 @@
 import 'package:thaonhushop_flutter/app/modules/home/controller/home_controller.dart';
-import 'package:thaonhushop_flutter/app/modules/home/widgets/leading_sliver_app_bar_widget.dart';
-import 'package:thaonhushop_flutter/app/modules/home/widgets/list_action_sliver_app_bar_widget.dart';
 import 'package:thaonhushop_flutter/app/modules/home/widgets/list_category_widget.dart';
 import '../../../core/utils/export.dart';
 import '../widgets/flexible_space_bar_widget.dart';
-import '../widgets/title_sliver_app_bar_widget.dart';
 
 class HomeScreen extends GetWidget<HomeController> {
   const HomeScreen({super.key});
@@ -17,83 +14,162 @@ class HomeScreen extends GetWidget<HomeController> {
       child: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: Colors.grey.shade400,
+            backgroundColor: const Color(0xFF373535),
             pinned: true,
             snap: false,
             floating: false,
             centerTitle: true,
-            expandedHeight: 240.h,
-            leading: const LeadingSliverAppBarWidget(),
-            actions: ListActionSliverAppBarWidget().listAction(),
+            expandedHeight: 250.h,
             titleSpacing: 2.w,
-            title: const TitleSliverAppBarWidget(),
             flexibleSpace: const FlexibleSpaceBarWidget(),
+          ),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(top: 10.0.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    color: Colors.white,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.only(left: 8.w, bottom: 18.w, top: 16.w),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Flash sale",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          SizedBox(width: 6.w),
+                          Padding(
+                            padding: EdgeInsets.only(top: 1.w),
+                            child: Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                              size: 18.sp,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 1.w),
+                            child: Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                              size: 18.sp,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 1.w),
+                            child: Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                              size: 18.sp,
+                            ),
+                          ),
+                          const Spacer(),
+                          Text("View all",
+                              style: Theme.of(context).textTheme.bodyMedium),
+                          SizedBox(width: 8.w),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.white,
+                    height: 240.0.h,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            left: index == 0 ? 8.w : 0,
+                            right: index == 9 ? 8.w : 4,
+                            bottom: 10.w,
+                          ),
+                          child: Container(
+                            color: Colors.green,
+                            width: 180.0.h,
+                            child: Column(
+                              children: [
+                                Image.network(
+                                  "https://picsum.photos/250?image=9",
+                                ),
+                                Text("Item $index"),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 20.h)
+                ],
+              ),
+            ),
           ),
 
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // SizedBox(height: 10.h),
                 Container(
-                  color: Colors.orange,
-                  child: Row(
-                    children: const [
-                      Text("SALE"),
-                    ],
-                  ),
-                ),
-                Container(
-                  color: Colors.orange,
-                  height: 240.0.h,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                          color: Colors.green,
-                          width: 180.0.h,
-                          child: Column(
-                            children: [
-                              Image.network(
-                                "https://picsum.photos/250?image=9",
-                              ),
-                              Text("Item $index"),
-                            ],
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.w, bottom: 10.w),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Hot deal",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        SizedBox(width: 6.w),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.w),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 18.sp,
                           ),
                         ),
-                      );
-                    },
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.w),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 18.sp,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.w),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 18.sp,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text("View all",
+                            style: Theme.of(context).textTheme.bodyMedium),
+                        SizedBox(width: 8.w),
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(height: 10.h)
-              ],
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // SizedBox(height: 10.h),
                 Container(
-                  color: Colors.orange,
-                  child: Row(
-                    children: const [
-                      Text("HOT"),
-                    ],
-                  ),
-                ),
-                Container(
-                  color: Colors.orange,
-                  height: 140.0.h,
+                  color: Colors.white,
+                  height: 150.0.h,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: EdgeInsets.only(
+                          left: index == 0 ? 8.w : 0,
+                          right: index == 9 ? 8.w : 4,
+                          bottom: 10.w,
+                          top: 10.w,
+                        ),
                         child: Container(
                           color: Colors.green,
                           width: 220.0.h,
@@ -106,32 +182,72 @@ class HomeScreen extends GetWidget<HomeController> {
                     },
                   ),
                 ),
-                SizedBox(height: 10.h)
+                SizedBox(height: 20.h)
               ],
             ),
           ),
+
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // SizedBox(height: 10.h),
                 Container(
-                  color: Colors.orange,
-                  child: Row(
-                    children: const [
-                      Text("Brand"),
-                    ],
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.w, bottom: 16.w),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Brand",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        SizedBox(width: 6.w),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.w),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 18.sp,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.w),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 18.sp,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1.w),
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.yellow,
+                            size: 18.sp,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text("View all",
+                            style: Theme.of(context).textTheme.bodyMedium),
+                        SizedBox(width: 8.w),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
-                  color: Colors.orange,
+                  color: Colors.white,
                   height: 100.0.h,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: EdgeInsets.only(
+                          left: index == 0 ? 8.w : 0,
+                          right: index == 9 ? 8.w : 4,
+                          top: 4.w,
+                          bottom: 4.w,
+                        ),
                         child: Container(
                           color: Colors.green,
                           width: 100.0.h,
@@ -144,13 +260,18 @@ class HomeScreen extends GetWidget<HomeController> {
                     },
                   ),
                 ),
-                SizedBox(height: 10.h)
+                SizedBox(height: 16.h)
               ],
             ),
           ),
-          const SliverToBoxAdapter(
-            child: ListCategoryWidget(),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 16.w),
+              child: const ListCategoryWidget(),
+            ),
           ),
+
           // SliverFixedExtentList(
           //   itemExtent: 100.0,
           //   delegate: SliverChildBuilderDelegate(
@@ -246,42 +367,14 @@ class HomeScreen extends GetWidget<HomeController> {
               mainAxisSpacing: 8,
               crossAxisCount: 2,
               children: <Widget>[
-                Container(
-                  height: 200,
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.green[100],
-                  child: const Text("He'd have you all unravel at the"),
-                ),
-                Container(
-                  height: 200,
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.green[200],
-                  child: const Text('Heed not the rabble'),
-                ),
-                Container(
-                  height: 200,
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.green[300],
-                  child: const Text('Sound of screams but the'),
-                ),
-                Container(
-                  height: 200,
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.green[400],
-                  child: const Text('Who scream'),
-                ),
-                Container(
-                  height: 200,
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.green[500],
-                  child: const Text('Revolution is coming...'),
-                ),
-                Container(
-                  height: 200,
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.green[600],
-                  child: const Text('Revolution, they...'),
-                ),
+                for (int i = 0; i < 30; i++) ...{
+                  Container(
+                    height: 200,
+                    padding: const EdgeInsets.all(8),
+                    color: i % 2 == 0 ? Colors.green[100] : Colors.green[500],
+                    child: const Text("He'd have you all unravel at the"),
+                  ),
+                }
               ],
             ),
           ),

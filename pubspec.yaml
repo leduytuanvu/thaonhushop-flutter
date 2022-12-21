@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^1.1.6
   carousel_slider: ^4.2.1
   cached_network_image: ^3.2.3
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
