@@ -1,16 +1,16 @@
-import 'dart:developer';
 import 'package:dio/dio.dart';
 import '../../../core/config/app_endpoint.dart';
 
 class DioClient {
-  late final Dio _dio;
+  // dio instance
+  final Dio _dio;
 
   DioClient(this._dio) {
     _dio
-      ..options.baseUrl = AppEnpoint.baseUrl
-      ..options.connectTimeout = AppEnpoint.connectionTimeout
-      ..options.receiveTimeout = AppEnpoint.receiveTimeout
-      ..options.responseType = ResponseType.json;
+      ..options.contentType = AppEndpoint.contentType
+      ..options.baseUrl = AppEndpoint.baseUrl
+      ..options.connectTimeout = AppEndpoint.connectionTimeout
+      ..options.receiveTimeout = AppEndpoint.receiveTimeout;
   }
 
   // GET -----------------------------------------------------------------------
@@ -38,6 +38,7 @@ class DioClient {
 
   // POST ----------------------------------------------------------------------
 
+  // Post:----------------------------------------------------------------------
   Future<Response> post(
     String url, {
     data,
@@ -59,7 +60,6 @@ class DioClient {
       );
       return response;
     } catch (e) {
-      log(e.toString());
       rethrow;
     }
   }

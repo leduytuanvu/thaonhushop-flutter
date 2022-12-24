@@ -1,9 +1,15 @@
+import 'dart:developer';
+
 import 'package:thaonhushop_flutter/app/routes/routers.dart';
 
+import '../../../core/utils/dependency_injection.dart';
 import '../../../core/utils/export.dart';
+import '../../../data/repositories/authentication_repository.dart';
+import '../../../domain/requests/login_request.dart';
+import '../../../domain/responses/base_response.dart';
 
-// SIGN IN STATE
-enum SignInState {
+// LOGIN STATE
+enum LoginState {
   initial,
   loading,
 }
@@ -18,14 +24,15 @@ class LoginController extends GetxController {
   //   required this.authRepository,
   //   required this.userRepository,
   // });
+  final authenticationRepository = getIt.get<AuththenticationRepository>();
 
   // OBSERVABLES
-  var signInState = SignInState.initial.obs;
+  var loginState = LoginState.initial.obs;
   var isShowPassword = false.obs;
   var shouldPop = true.obs;
 
   // TEXT CONTROLLER
-  final emailTextController = TextEditingController();
+  final phoneTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
   // GO TO SIGN UP SCREEN
@@ -34,12 +41,12 @@ class LoginController extends GetxController {
   @override
   void dispose() {
     super.dispose();
-    emailTextController.dispose();
+    phoneTextController.dispose();
     passwordTextController.dispose();
   }
 
   // SIGN IN WITH GOOGLE
-  Future<void> signInWithGoogle() async {
+  Future<void> loginWithGoogle() async {
     // signInState(SignInState.loading);
     // var baseResponse = await authRepository.signInWithGoogle();
     // if (baseResponse.statusAction == StatusAction.success) {
@@ -56,18 +63,20 @@ class LoginController extends GetxController {
   }
 
   // SIGN IN WITH EMAIL PASSWORD
-  Future<void> signInWithEmailPassword() async {
-    // FocusManager.instance.primaryFocus?.unfocus();
-    // signInState(SignInState.loading);
-    // SignInRequest signInRequest = SignInRequest(
-    //   email: emailTextController.text,
-    //   password: passwordTextController.text,
-    // );
-    // BaseResponse baseResponse =
-    //     await authRepository.signInWithEmailPassword(request: signInRequest);
-    // if (baseResponse.statusAction == StatusAction.success) {
-    //   Get.offAllNamed(Routers.bottomBarScreen);
-    // }
+  Future<void> signInWithPhone() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    loginState(LoginState.loading);
+    LoginRequest loginRequest = LoginRequest(
+      phone: phoneTextController.text,
+      password: passwordTextController.text,
+    );
+    BaseResponse baseResponse =
+        await authenticationRepository.loginByPhone(loginRequest);
+    if (baseResponse.statusCode >= 200 && baseResponse.statusCode < 300) {
+      // Get.offAllNamed(Routers.bottomBarScreen);
+      log(" LOGIN OK");
+      log(baseResponse.data.toString());
+    }
     // showSnackBar(
     //   context: Get.context,
     //   message: baseResponse.message,
@@ -75,7 +84,7 @@ class LoginController extends GetxController {
     //       ? Colors.green
     //       : Colors.red,
     // );
-    // signInState(SignInState.initial);
+    loginState(LoginState.initial);
   }
 
   // SET PASSWORD VISIBLE/ INVISIBLE

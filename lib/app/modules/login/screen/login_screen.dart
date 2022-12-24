@@ -36,7 +36,7 @@ class LoginScreen extends GetWidget<LoginController> {
                         hint: 'Phone',
                         function: () {},
                         icon: null,
-                        controller: controller.emailTextController,
+                        controller: controller.phoneTextController,
                       ),
                     ),
                     SizedBox(height: 8.h),
@@ -62,7 +62,7 @@ class LoginScreen extends GetWidget<LoginController> {
                         fontSize: 15.sp,
                         title: 'SIGN IN',
                         function: () {
-                          controller.signInWithEmailPassword();
+                          controller.signInWithPhone();
                         },
                       ),
                     ),
@@ -117,8 +117,7 @@ class LoginScreen extends GetWidget<LoginController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () async =>
-                              await controller.signInWithGoogle(),
+                          onTap: () async => await controller.loginWithGoogle(),
                           child: Container(
                             color: Colors.transparent,
                             height: 45.w,
@@ -140,7 +139,7 @@ class LoginScreen extends GetWidget<LoginController> {
               ),
             ),
             Obx(() => SizedBox(
-                  child: controller.signInState.value == SignInState.loading
+                  child: controller.loginState.value == LoginState.loading
                       ? Container(
                           height: size.height,
                           width: size.width,

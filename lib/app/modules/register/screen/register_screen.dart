@@ -30,7 +30,7 @@ class RegisterScreen extends GetWidget<RegisterController> {
                     SizedBox(height: 5.h),
                     CustomTextFieldWidget(
                       hint: 'Email',
-                      controller: controller.emailTextController,
+                      controller: controller.phoneTextController,
                       obscureText: false,
                       function: () {},
                       icon: null,
@@ -66,7 +66,7 @@ class RegisterScreen extends GetWidget<RegisterController> {
                         fontSize: 15.sp,
                         title: 'SIGN UP',
                         function: () {
-                          controller.signUpWithEmailPassword();
+                          controller.registerAccountByPhone();
                         }),
                     SizedBox(height: 5.h),
                     Row(
@@ -112,14 +112,14 @@ class RegisterScreen extends GetWidget<RegisterController> {
             ),
           ),
           Obx(() => SizedBox(
-                child: controller.signUpState.value == SignUpState.loading
+                child: controller.registerState.value == RegisterState.loading
                     ? Container(
                         height: size.height,
                         width: size.width,
                         color: Colors.black.withOpacity(0.6),
                         child: Center(
                           child: Lottie.asset(
-                            'assets/videos/loading.json',
+                            'assets/lotties/loading.json',
                             height: 250.w,
                             width: 250.w,
                           ),

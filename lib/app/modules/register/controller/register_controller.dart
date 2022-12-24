@@ -1,23 +1,26 @@
+import 'package:thaonhushop_flutter/app/data/repositories/authentication_repository.dart';
+
+import '../../../core/utils/dependency_injection.dart';
 import '../../../core/utils/export.dart';
+import '../../../domain/requests/register_request.dart';
 import '../../../routes/routers.dart';
 
-enum SignUpState {
+enum RegisterState {
   initial,
   loading,
 }
 
 class RegisterController extends GetxController {
-  var signUpState = SignUpState.initial.obs;
+  var registerState = RegisterState.initial.obs;
   var isShowPassword = false.obs;
 
-  // final UserRepository userRepository;
-  // final AuthRepository authRepository;
-  // SignUpController({
-  //   required this.userRepository,
-  //   required this.authRepository,
+  // final AuththenticationRepository authenticationRepository;
+  // RegisterController({
+  //   required this.authenticationRepository,
   // });
+  final authenticationRepository = getIt.get<AuththenticationRepository>();
 
-  final emailTextController = TextEditingController();
+  final phoneTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final rePasswordTextController = TextEditingController();
 
@@ -26,32 +29,32 @@ class RegisterController extends GetxController {
   @override
   void dispose() {
     super.dispose();
-    emailTextController.dispose();
+    phoneTextController.dispose();
     passwordTextController.dispose();
     rePasswordTextController.dispose();
   }
 
-  Future<void> signUpWithEmailPassword() async {
-    // FocusManager.instance.primaryFocus?.unfocus();
-    // signUpState(SignUpState.loading);
-    // SignUpRequest signUpRequest = SignUpRequest(
-    //   email: emailTextController.text,
-    //   password: passwordTextController.text,
-    //   rePassword: rePasswordTextController.text,
-    // );
-    // BaseResponse baseResponse =
-    //     await authRepository.signUpWithEmailPassword(request: signUpRequest);
-    // if (baseResponse.statusAction == StatusAction.success &&
-    //     baseResponse.data != null) {
-    //   Get.offAllNamed(Routers.signInScreen);
+  Future<void> registerAccountByPhone() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    registerState(RegisterState.loading);
+    RegisterRequest request = RegisterRequest(
+      phone: phoneTextController.text,
+      password: passwordTextController.text,
+      rePassword: rePasswordTextController.text,
+    );
+    var response =
+        await authenticationRepository.registerAccountByPhone(request);
+
+    // if (response.statusCode >= 200 && response.statusCode < 300) {
+    response.toString();
     // }
     // showSnackBar(
     //   context: Get.context,
-    //   message: baseResponse.message,
-    //   color: baseResponse.statusAction == StatusAction.success
+    //   message: response.message,
+    //   color: response.statusAction == StatusAction.success
     //       ? Colors.green
     //       : Colors.red,
     // );
-    // signUpState(SignUpState.initial);
+    registerState(RegisterState.initial);
   }
 }
