@@ -1,16 +1,4 @@
-# thaonhushop_flutter
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## This is an shop app
+## Screenshots
+![z4018308911886_bdcfb357aa965b815cbcc30e8bf1baa9](https://user-images.githubusercontent.com/81070850/210979022-e16748c6-e241-4b25-8474-a9e9444fa7f9.jpg)
+![z4018308880973_1643a23326b7c1813c479b3a5f89cdba](https://user-images.githubusercontent.com/81070850/210979034-f9d5402d-2f6e-48b9-b2ba-17980643ff50.jpg)
